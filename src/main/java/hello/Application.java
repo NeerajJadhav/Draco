@@ -8,17 +8,26 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
+    private final CustomerRepository repository;
+
     @Autowired
-    private CustomerRepository repository;
+    public Application(CustomerRepository repository) {
+        this.repository = repository;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+        System.out.println("In Run");
+        System.out.println();
 
-        repository.deleteAll();
+        repository.save(new Customer("Alice", "Smith"));
+        //repository.deleteAll();
+
+        /*repository.deleteAll();
 
         // save a couple of customers
         repository.save(new Customer("Alice", "Smith"));
@@ -41,7 +50,6 @@ public class Application implements CommandLineRunner {
         System.out.println("--------------------------------");
         for (Customer customer : repository.findByLastName("Smith")) {
             System.out.println(customer);
-        }
-
+        }*/
     }
 }
