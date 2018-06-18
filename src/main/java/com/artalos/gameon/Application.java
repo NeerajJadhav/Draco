@@ -26,9 +26,8 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        //userModel.deleteAll();
-
-        // save a couple of customers
+        //TODO : Add DeleteALl logic and uniqueness for username
+       /* // save a couple of customers
         userModel.createUser(new User("alice", "Alice", "Wonders", "alice@wonderland.com"));
         userModel.createUser(new User("bob", "Bob", "Smith", "bob@gameon.com"));
 
@@ -43,6 +42,6 @@ public class Application implements CommandLineRunner {
         // fetch an individual customer
         System.out.println("Customer found with findByFirstName('Alice'):");
         System.out.println("--------------------------------");
-        System.out.println(userModel.findUserByUsername("alice"));
+        System.out.println(userModel.findUserByUsername("alice"));*/
     }
 }
