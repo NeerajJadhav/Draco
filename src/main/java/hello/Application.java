@@ -21,13 +21,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("In Run");
-        System.out.println();
-
-        repository.save(new Customer("Alice", "Smith"));
-        //repository.deleteAll();
-
-        /*repository.deleteAll();
+        repository.deleteAll();
 
         // save a couple of customers
         repository.save(new Customer("Alice", "Smith"));
@@ -50,6 +44,6 @@ public class Application implements CommandLineRunner {
         System.out.println("--------------------------------");
         for (Customer customer : repository.findByLastName("Smith")) {
             System.out.println(customer);
-        }*/
+        }
     }
 }
