@@ -45,10 +45,14 @@ public class UserModelImpl implements UserModel {
         return !repository.existsById(userId);
     }
 
-
     @Override
     public List<User> searchUsers(String searchWord) {
         //TODO: Fix SearchUsers functionality
+        return repository.findAll();
+    }
+
+    @Override
+    public List<User> getAllUsers() {
         return repository.findAll();
     }
 }

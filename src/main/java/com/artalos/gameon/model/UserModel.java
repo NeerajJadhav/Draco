@@ -19,6 +19,8 @@ public interface UserModel extends Model {
 
     List<User> searchUsers(String searchWord);
 
+    List<User> getAllUsers();
+
 
     /*addGame();
     addLike();

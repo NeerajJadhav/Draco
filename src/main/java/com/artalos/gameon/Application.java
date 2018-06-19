@@ -1,6 +1,5 @@
 package com.artalos.gameon;
 
-import com.artalos.gameon.domain.User;
 import com.artalos.gameon.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,13 +11,8 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 public class Application implements CommandLineRunner {
 
-    private final UserModel userModel;
-
     @Autowired
-    public Application(UserModel userModel) {
-        System.out.println(userModel.getClass());
-        this.userModel = userModel;
-    }
+    private UserModel userModel;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
