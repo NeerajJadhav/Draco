@@ -21,11 +21,10 @@ public class UserController {
     @Autowired
     private UserModel userModel;
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "API Home!";
     }
-
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public User createUser(@RequestBody User user) {
@@ -56,7 +55,6 @@ public class UserController {
         user.setLastModifiedDate(current);
         return userModel.updateUser(user);
     }
-    //app.put("/api/user/:userId",updateUser);
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<User> getAllUsers() {

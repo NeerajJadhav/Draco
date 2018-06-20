@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
 @Configuration
-public class MongoConfig {
+public class MongoConfiguration {
     @Value("${gameon.mongodb.hostname}")
     private String hostname;
 
