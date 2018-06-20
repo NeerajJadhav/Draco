@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public User createUser(@RequestBody User user) {
         // TODO : Check if the user already exists and uniqueness of username
-        Timestamp current = Timestamp.from(Instant.now());
+        Date current = Date.from(Instant.now());
         user.setCreatedDate(current);
         user.setLastModifiedDate(current);
         return userModel.createUser(user);
