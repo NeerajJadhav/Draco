@@ -1,8 +1,9 @@
 package com.artalos.gameon.domain;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
+
+import java.sql.Timestamp;
+
 
 public class User {
     //var userSchema = mongoose.Schema({
@@ -44,13 +45,12 @@ public class User {
     private UserType userType;
     //private List<Game> games;
 
-    @CreatedDate
-    private String createdDate;
-    @LastModifiedDate
-    private String lastModifiedDate;
+    private Timestamp createdDate;
+    private Timestamp lastModifiedDate;
 
 
-    public User() {}
+    public User() {
+    }
 
     public User(String userName, String firstName, String lastName, String email) {
         this.userName = userName;
@@ -73,5 +73,126 @@ public class User {
                 ", createdDate='" + createdDate + '\'' +
                 ", lastModifiedDate='" + lastModifiedDate + '\'' +
                 '}';
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public Timestamp getCreatedDate() {
+        return createdDate;
+    }
+
+    public Timestamp getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setLastModifiedDate(Timestamp lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public static class Builder {
+        private String userName;
+        private String password;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private String cover;
+        private UserType userType;
+
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder userName(String userName) {
+            this.userName = userName;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder password(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder cover(String cover) {
+            this.cover = cover;
+            return this;
+        }
+
+        public Builder userType(UserType userType) {
+            this.userType = userType;
+            return this;
+        }
     }
 }

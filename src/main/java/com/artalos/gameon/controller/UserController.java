@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/api/")
+@RequestMapping("/v1/api/")
 public class UserController {
 
     @Autowired
@@ -21,13 +23,16 @@ public class UserController {
 
     @RequestMapping("/")
     public String index() {
-        return "Greetings from Spring Boot!";
+        return "API Home!";
     }
 
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public User createUser(@RequestBody User user) {
-        System.out.println("User: " + user);
+        // TODO : Check if the user already exists and uniqueness of username
+        Timestamp current = Timestamp.from(Instant.now());
+        user.setCreatedDate(current);
+        user.setLastModifiedDate(current);
         return userModel.createUser(user);
     }
 
@@ -45,7 +50,10 @@ public class UserController {
 
 
     @RequestMapping(value = "/user/{userId}", method = RequestMethod.PUT)
-    public User updateUser(@RequestBody User user) {
+    public User updateUser(@RequestBody User user, @PathVariable("userId") String userId) {
+        // TODO : Check if the user already exists
+        Timestamp current = Timestamp.from(Instant.now());
+        user.setLastModifiedDate(current);
         return userModel.updateUser(user);
     }
     //app.put("/api/user/:userId",updateUser);
