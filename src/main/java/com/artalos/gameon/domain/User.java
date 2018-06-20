@@ -2,7 +2,7 @@ package com.artalos.gameon.domain;
 
 import org.springframework.data.annotation.Id;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 
 public class User {
@@ -45,8 +45,8 @@ public class User {
     private UserType userType;
     //private List<Game> games;
 
-    private Timestamp createdDate;
-    private Timestamp lastModifiedDate;
+    private Date createdDate;
+    private Date lastModifiedDate;
 
 
     public User() {
@@ -107,11 +107,11 @@ public class User {
         return userType;
     }
 
-    public Timestamp getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public Timestamp getLastModifiedDate() {
+    public Date getLastModifiedDate() {
         return lastModifiedDate;
     }
 
@@ -143,11 +143,11 @@ public class User {
         this.userType = userType;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
-    public void setLastModifiedDate(Timestamp lastModifiedDate) {
+    public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 
