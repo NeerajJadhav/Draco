@@ -80,7 +80,6 @@ public class UserController {
     public List<User> searchUsers(@RequestParam(value = "q") String searchTerm) {
         return userModel.searchUsers(searchTerm);
     }
-    //app.get("/api/searchUsers",searchUsers);
 
 
     @RequestMapping(value = "/user/{userId}", method = RequestMethod.DELETE)

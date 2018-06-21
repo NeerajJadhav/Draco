@@ -1,10 +1,13 @@
 package com.artalos.gameon.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
-
+@Document(collection = "users")
 public class User {
     //var userSchema = mongoose.Schema({
     //            username: {type: String, unique: true, required: true},
@@ -43,20 +46,19 @@ public class User {
     private String email;
     private String cover;
     private UserType userType;
-    //private List<Game> games;
-
+    @DBRef
+    private List<Game> games;
+    @DBRef
+    private List<Game> liked;
+    @DBRef
+    private List<User> following;
+    @DBRef
+    private List<User> followers;
     private Date createdDate;
     private Date lastModifiedDate;
 
 
     public User() {
-    }
-
-    public User(String userName, String firstName, String lastName, String email) {
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
     }
 
     @Override
@@ -70,8 +72,12 @@ public class User {
                 ", email='" + email + '\'' +
                 ", cover='" + cover + '\'' +
                 ", userType=" + userType +
-                ", createdDate='" + createdDate + '\'' +
-                ", lastModifiedDate='" + lastModifiedDate + '\'' +
+                ", games=" + games +
+                ", liked=" + liked +
+                ", following=" + following +
+                ", followers=" + followers +
+                ", createdDate=" + createdDate +
+                ", lastModifiedDate=" + lastModifiedDate +
                 '}';
     }
 
@@ -115,6 +121,22 @@ public class User {
         return lastModifiedDate;
     }
 
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public List<Game> getLiked() {
+        return liked;
+    }
+
+    public List<User> getFollowing() {
+        return following;
+    }
+
+    public List<User> getFollowers() {
+        return followers;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -151,6 +173,26 @@ public class User {
         this.lastModifiedDate = lastModifiedDate;
     }
 
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
+
+    public void setLiked(List<Game> liked) {
+        this.liked = liked;
+    }
+
+    public void setFollowing(List<User> following) {
+        this.following = following;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    public static Builder userBuilder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String userName;
         private String password;
@@ -159,6 +201,10 @@ public class User {
         private String email;
         private String cover;
         private UserType userType;
+        private List<Game> games;
+        private List<Game> liked;
+        private List<User> following;
+        private List<User> followers;
 
         public Builder firstName(String firstName) {
             this.firstName = firstName;
@@ -193,6 +239,42 @@ public class User {
         public Builder userType(UserType userType) {
             this.userType = userType;
             return this;
+        }
+
+        public Builder setGames(List<Game> games) {
+            this.games = games;
+            return this;
+        }
+
+        public Builder setLiked(List<Game> liked) {
+            this.liked = liked;
+            return this;
+        }
+
+        public Builder setFollowing(List<User> following) {
+            this.following = following;
+            return this;
+        }
+
+        public Builder setFollowers(List<User> followers) {
+            this.followers = followers;
+            return this;
+        }
+
+        public User build() {
+            User user = new User();
+            user.setUserName(this.userName);
+            user.setLastName(this.lastName);
+            user.setFirstName(this.firstName);
+            user.setCover(this.cover);
+            user.setEmail(this.email);
+            user.setPassword(this.password);
+            user.setUserType(this.userType);
+            user.setGames(this.games);
+            user.setLiked(this.liked);
+            user.setFollowers(this.followers);
+            user.setFollowing(this.following);
+            return user;
         }
     }
 }
